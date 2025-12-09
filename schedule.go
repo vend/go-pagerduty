@@ -201,7 +201,13 @@ func (c *Client) GetScheduleWithContext(ctx context.Context, id string, o GetSch
 		return nil, fmt.Errorf("Could not parse values for query: %v", err)
 	}
 
-	resp, err := c.get(ctx, "/schedules/"+id+"?"+v.Encode(), nil)
+	// HACK: the extra slash that has been added here seems to affect how PagerDuty's API routes this request
+	//
+	// We've added this to resolve an issue where the start/end times for override shifts are not always returned
+	// correctly in the final schedule returned by this endpoint. It's likely that PagerDuty are running two versions
+	// of their API concurrently and one seems to handle overrides differently.
+	//
+	resp, err := c.get(ctx, "//schedules/"+id+"?"+v.Encode(), nil)
 	return getScheduleFromResponse(c, resp, err)
 }
 
