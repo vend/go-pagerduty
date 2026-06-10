@@ -1,0 +1,20 @@
+name: CodeQL
+
+"on":
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '11 19 * * 3'
+
+jobs:
+  analyze:
+    strategy:
+      matrix:
+        language: [ 'go' ]
+    uses: lightspeed-security/code-scanning-workflows/.github/workflows/default.yml@main
+    with:
+      language: ${{ matrix.language }}
+    secrets:
+      GOPRIVATE_TOKEN: ${{ secrets.TOKEN_VEND_PIPELINE }}
