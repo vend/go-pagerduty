@@ -1,6 +1,6 @@
 module github.com/PagerDuty/go-pagerduty
 
-go 1.24.0
+go 1.25.0
 
 require (
 	github.com/google/go-cmp v0.6.0
@@ -31,6 +31,6 @@ require (
 	github.com/posener/complete v1.2.3 // indirect
 	github.com/shopspring/decimal v1.3.1 // indirect
 	github.com/spf13/cast v1.6.0 // indirect
-	golang.org/x/crypto v0.45.0 // indirect
-	golang.org/x/sys v0.38.0 // indirect
+	golang.org/x/crypto v0.54.0 // indirect
+	golang.org/x/sys v0.47.0 // indirect
 )
